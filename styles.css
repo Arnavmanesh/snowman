@@ -1,0 +1,193 @@
+/* --- General Setup --- */
+        body {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #0f172a, #312e81);
+            overflow: hidden; 
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .title-container {
+            position: absolute;
+            top: 2rem; /* 32px */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 20;
+            width: 90%;
+        }
+
+        .font-christmas {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3rem; /* 48px */
+            color: #facc15; /* text-yellow-300 */
+            text-shadow: 0 0 10px #fde047;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            color: #cbd5e1; /* text-slate-300 */
+            margin-top: 0.5rem; /* 8px */
+            font-size: 1.125rem; /* 18px */
+        }
+
+        /* --- Scene Layout --- */
+        .scene-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            gap: 2rem; /* 32px */
+            padding-bottom: 40px;
+        }
+        
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 78px;
+            background: #f0f4f8;
+            border-top-left-radius: 50% 20px;
+            border-top-right-radius: 50% 20px;
+            z-index: 10; /* Ensure ground is above snow */
+        }
+
+        /* --- Stars in the Sky --- */
+        .star {
+            position: absolute;
+            background-color: rgb(234, 255, 0);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #fff;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+
+        .star.s1 { top: 10%; left: 15%; width: 3px; height: 3px; animation-delay: 0s; }
+        .star.s2 { top: 20%; left: 80%; width: 2px; height: 2px; animation-delay: 1s; }
+        .star.s3 { top: 35%; left: 30%; width: 4px; height: 4px; animation-delay: 2.5s; }
+        .star.s4 { top: 5%; left: 50%; width: 2px; height: 2px; animation-delay: 4s; }
+        .star.s5 { top: 25%; left: 5%; width: 2px; height: 2px; animation-delay: 2s; }
+        .star.s6 { top: 40%; left: 90%; width: 3px; height: 3px; animation-delay: 3s; }
+        .star.s7 { top: 50%; left: 60%; width: 2px; height: 2px; animation-delay: 0.5s; }
+
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* --- Snowfall Effect --- */
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+                opacity: 0;
+            }
+        }
+
+        .snowflake:nth-of-type(1) { left: 10%; width: 8px; height: 8px; animation-duration: 10s; animation-delay: 0s; }
+        .snowflake:nth-of-type(2) { left: 20%; width: 5px; height: 5px; animation-duration: 12s; animation-delay: 2s; }
+        .snowflake:nth-of-type(3) { left: 30%; width: 6px; height: 6px; animation-duration: 8s; animation-delay: 4s; }
+        .snowflake:nth-of-type(4) { left: 40%; width: 4px; height: 4px; animation-duration: 15s; animation-delay: 1s; }
+        .snowflake:nth-of-type(5) { left: 50%; width: 7px; height: 7px; animation-duration: 9s; animation-delay: 3s; }
+        .snowflake:nth-of-type(6) { left: 60%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 5s; }
+        .snowflake:nth-of-type(7) { left: 70%; width: 6px; height: 6px; animation-duration: 13s; animation-delay: 0.5s; }
+        .snowflake:nth-of-type(8) { left: 80%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 1.5s; }
+        .snowflake:nth-of-type(9) { left: 90%; width: 7px; height: 7px; animation-duration: 7s; animation-delay: 2.5s; }
+
+
+        /* --- Snowman Styles --- */
+        .snowman {
+            position: relative;
+            width: 200px;
+            height: 350px;
+            transform: scale(0.8);
+            z-index: 5;            
+        }
+
+        .snowman-body {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15), inset 0 -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .snowman .base { width: 150px; height: 150px; bottom: 0; left: 25px; }
+        .snowman .middle { width: 120px; height: 120px; bottom: 110px; left: 40px; }
+        .snowman .head { width: 90px; height: 90px; bottom: 200px; left: 55px; }
+        .snowman .eye { position: absolute; width: 8px; height: 8px; background-color: #333; border-radius: 50%; top: 35px; }
+        .snowman .eye.left { left: 25px; }
+        .snowman .eye.right { right: 25px; }
+        .snowman .nose { position: absolute; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 20px solid #f97316; top: 42px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .snowman .button { position: absolute; width: 10px; height: 10px; background-color: #1e293b; border-radius: 50%; left: 50%; transform: translateX(-50%); }
+        .snowman .button:nth-of-type(1) { top: 20px; }
+        .snowman .button:nth-of-type(2) { top: 45px; }
+        .snowman .button:nth-of-type(3) { top: 70px; }
+
+        /* --- Snowman Hat --- */
+        .hat { position: absolute; z-index: 10; bottom: 280px; left: 60px; }
+        .hat-brim { width: 80px; height: 12px; background: #333; border-radius: 3px; }
+        .hat-top { width: 70px; height: 50px; background: #333; border-radius: 6px 6px 0 0; position: absolute; bottom: 10px; left: 5px; }
+        .hat-band { width: 70px; height: 15px; background: #dc2626; position: absolute; bottom: 10px; left: 5px; }
+        .scarf { position: absolute; background-color: #dc2626; width: 100px; height: 15px; bottom: 205px; left: 50px; border-radius: 5px; transform: rotate(-5deg); }
+        /* --- Christmas Tree Styles --- */
+        .tree {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            z-index: 5;
+            margin-bottom: 34px;
+        }
+
+        .tree-trunk { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 60px; background-color: #5d4037; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .tree-layer { position: absolute; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 60px solid transparent; border-right: 60px solid transparent; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); }
+        .tree .layer-1 { bottom: 40px; border-bottom: 100px solid #166534; z-index: 3; }
+        .tree .layer-2 { bottom: 90px; border-left-width: 80px; border-right-width: 80px; border-bottom: 120px solid #15803d; z-index: 2; }
+        .tree .layer-3 { bottom: 160px; border-left-width: 100px; border-right-width: 100px; border-bottom: 150px solid #16a34a; z-index: 1; }
+        
+        .tree-star { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); display: block; color: #facc15; width: 20px; height: 20px; font-size: 20px; text-shadow: 0 0 15px #fde047; }
+        .tree-star:before { content: '★'; position: absolute; }
+        
+        .ornament { position: absolute; width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 -3px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.5); animation: twinkle-ornament 2s infinite ease-in-out; }
+        .ornament.red { background-color: #dc2626; }
+        .ornament.blue { background-color: #2563eb; }
+        .ornament.gold { background-color: #f59e0b; }
+        .ornament.purple { background-color: #9333ea; }
+        .ornament.p1 { top: 120px; left: 115px; animation-delay: 0.2s; }
+        .ornament.p2 { top: 170px; left: 80px; animation-delay: 0.8s; }
+        .ornament.p3 { top: 180px; left: 150px; animation-delay: 1.4s; }
+        .ornament.p4 { top: 230px; left: 50px; animation-delay: 0.5s; }
+        .ornament.p5 { top: 250px; left: 180px; animation-delay: 1.1s; }
+        .ornament.p6 { top: 260px; left: 110px; animation-delay: 1.8s; }
+        .ornament.p7 { top: 210px; left: 120px; animation-delay: 0.1s; }
+
+        @keyframes twinkle-ornament {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; box-shadow: inset 0 -3px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.8); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 768px) {
+            .font-christmas {
+                font-size: 4.5rem; /* 72px */
+            }
+            .scene-container {
+                gap: 4rem; /* 64px */
+            }
+        }
+
+.moon { position: absolute; top: 10%; right: 15%; width: 60px; height: 60px; background-color: #fefcbf; border-radius: 50%; box-shadow: 0 0 20px #fefcbf; z-index: 2; }
+    

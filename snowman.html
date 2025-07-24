@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Holiday Scene</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <canvas id="snow"></canvas>
+    <!-- Stars in the sky -->
+    <div class="star s1"></div>
+    <div class="star s2"></div>
+    <div class="star s3"></div>
+    <div class="star s4"></div>
+    <div class="star s5"></div>
+    <div class="star s6"></div>
+    <div class="star s7"></div>
+    <div class="moon"></div>
+    
+    <div class="title-container">
+        <h1 class="font-christmas">
+            Happy Christmas 2024
+        </h1>
+
+    </div>
+
+    <!-- Main container for the scene -->
+    <div class="scene-container">
+
+        <!-- Snowman -->
+        <div class="snowman">
+            <div class="snowman-body base"></div>
+            <div class="snowman-body middle">
+                <div class="button"></div>
+                <div class="button"></div>
+                <div class="button"></div>
+            </div>
+            <div class="snowman-body head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+            </div>
+            <!-- Snowman's Hat -->
+            <div class="hat">
+                <div class="hat-brim"></div>
+                <div class="hat-top"></div>
+                <div class="hat-band"></div>
+            </div>
+            <div class="scarf"></div>
+        </div>
+
+        <!-- Christmas Tree -->
+        <div class="tree">
+            <div class="tree-trunk"></div>
+            <div class="tree-layer layer-1"></div>
+            <div class="tree-layer layer-2"></div>
+            <div class="tree-layer layer-3">
+                 <div class="tree-star"></div>
+            </div>
+            
+            <!-- Ornaments -->
+            <div class="ornament red p1"></div>
+            <div class="ornament blue p2"></div>
+            <div class="ornament gold p3"></div>
+            <div class="ornament purple p4"></div>
+            <div class="ornament red p5"></div>
+            <div class="ornament blue p6"></div>
+            <div class="ornament gold p7"></div>
+        </div>
+
+    </div>
+
+    <!-- Ground -->
+    <div class="ground"></div>
+
+<script>
+  const canvas = document.getElementById('snow');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let flakes = [];
+
+  function createSnowFlake() {
+    if (flakes.length < 200) { 
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const r = Math.random() * 4 + 1;
+      const s = Math.random() * 1 + 0.5;
+      flakes.push({ x, y, r, s });
+    }
+  }
+
+  function drawFlakes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    for (let f of flakes) {
+      ctx.moveTo(f.x, f.y);
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    }
+    ctx.fill();
+    moveFlakes();
+  }
+
+  function moveFlakes() {
+    for (let f of flakes) {
+      f.y += f.s;
+      if (f.y > canvas.height) {
+        f.y = 0;
+        f.x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  function animateSnow() {
+    drawFlakes();
+    requestAnimationFrame(animateSnow);
+  }
+
+  setInterval(createSnowFlake, 200);
+  animateSnow();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
